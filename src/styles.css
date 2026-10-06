@@ -127,10 +127,6 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
 .contact-section h2 { position: relative; z-index: 1; margin: 38px 0 15px; font-size: clamp(65px, 9vw, 116px); }
 .contact-section h2 span { color: #e6c5b1; }
 .contact-email { position: relative; z-index: 1; display: inline-block; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,.55); font-size: 13px; }
-.legal-contact { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; margin: 0; color: rgba(255,242,228,.74); font: 9px/1.6 var(--mono); font-style: normal; letter-spacing: .08em; }
-.legal-contact > span:first-child { color: rgba(255,242,228,.55); font-size: 8px; letter-spacing: .14em; }
-.legal-contact strong { color: #f0e9dc; font: 500 11px 'DM Sans', sans-serif; letter-spacing: .04em; }
-.legal-contact a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .contact-bottom { margin-top: 89px; min-height: 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.24); position: relative; z-index: 1; }
 .contact-bottom .brand-type small { color: #e2c6b9; }
 .contact-bottom > span { color: rgba(255,242,228,.65); font: 8px var(--mono); letter-spacing: .12em; }
@@ -347,6 +343,15 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
   .site-footer .footer-back { grid-column: 2; grid-row: 1; }
   .site-footer .footer-social { grid-column: 1 / -1; grid-row: 2; justify-self: center; gap: 20px; }
   .site-footer .footer-legal { grid-column: 1 / -1; grid-row: 3; justify-self: center; gap: 16px; }
+}
+.hero-bottom-links { position: absolute; right: 0; bottom: 20px; left: 0; z-index: 3; display: flex; align-items: center; justify-content: center; gap: 36px; }
+.hero-bottom-links .scroll-cue { position: static; bottom: auto; left: auto; transform: none; }
+.hero-policy-link { display: inline-block; padding-bottom: 5px; border-bottom: 1px solid rgba(240,233,220,.28); color: #a9a197; font: 8px var(--mono); letter-spacing: .15em; text-decoration: none; white-space: nowrap; transition: color .2s,border-color .2s; }
+.hero-policy-link:hover { color: var(--paper); border-color: var(--red); }
+@media (max-width: 640px) {
+  .hero-bottom-links { bottom: 18px; gap: 14px; }
+  .hero-policy-link { font-size: 7px; letter-spacing: .08em; }
+  .hero-bottom-links .scroll-cue { font-size: 7px; letter-spacing: .12em; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; scroll-snap-type: none; }
