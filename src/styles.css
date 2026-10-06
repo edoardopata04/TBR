@@ -211,7 +211,7 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
   .site-footer { min-height: 82px; padding: 15px 6%; flex-wrap: wrap; gap: 14px; font-size: 7px; }
   .site-footer > div { order: 3; flex-basis: 100%; justify-content: center; }
 }
-html { scroll-snap-type: y proximity; scroll-padding-top: 0; scroll-padding-bottom: 48px; }
+html { scroll-snap-type: y mandatory; scroll-padding-top: 0; scroll-padding-bottom: 48px; }
 .site-header { position: fixed; background: rgba(11,10,9,.58); backdrop-filter: blur(12px); }
 main > section { scroll-snap-align: start; }
 main > section.hero, main > section.manifesto, main > section.artists-section, main > section.music-section, main > section.contact-section { min-height: 100vh; min-height: 100svh; }
