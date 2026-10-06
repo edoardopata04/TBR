@@ -349,7 +349,8 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 .hero-policy-link { display: inline-block; padding-bottom: 5px; border-bottom: 1px solid rgba(240,233,220,.28); color: #a9a197; font: 8px var(--mono); letter-spacing: .15em; text-decoration: none; white-space: nowrap; transition: color .2s,border-color .2s; }
 .hero-policy-link:hover { color: var(--paper); border-color: var(--red); }
 @media (max-width: 640px) {
-  .hero-bottom-links { bottom: 18px; gap: 14px; }
+  .hero-bottom-links { bottom: 18px; gap: 24px; }
+  .hero-bottom-links .hero-policy-link { align-self: flex-start; margin-top: 1px; }
   .hero-policy-link { font-size: 7px; letter-spacing: .08em; }
   .hero-bottom-links .scroll-cue { font-size: 7px; letter-spacing: .12em; }
 }
