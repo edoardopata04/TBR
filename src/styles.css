@@ -211,9 +211,9 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
   .site-footer { min-height: 82px; padding: 15px 6%; flex-wrap: wrap; gap: 14px; font-size: 7px; }
   .site-footer > div { order: 3; flex-basis: 100%; justify-content: center; }
 }
-html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
+html { scroll-snap-type: y proximity; scroll-padding-top: 0; scroll-padding-bottom: 48px; }
 .site-header { position: fixed; background: rgba(11,10,9,.58); backdrop-filter: blur(12px); }
-main > section { scroll-snap-align: start; scroll-snap-stop: always; }
+main > section { scroll-snap-align: start; }
 main > section.hero, main > section.manifesto, main > section.artists-section, main > section.music-section, main > section.contact-section { min-height: 100vh; min-height: 100svh; }
 .hero { padding-left: 8%; padding-right: 7%; }
 .hero h1 { font-size: clamp(76px, 8.5vw, 124px); }
@@ -330,7 +330,7 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 .site-footer .arrow-icon { width: 12px; height: 12px; margin-left: 3px; }
 .contact-spark { width: 28px; height: 28px; font-size: 0; }
 .contact-spark svg { display: block; width: 100%; height: 100%; }
-.site-footer { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: auto auto; gap: 10px 24px; min-height: 96px; padding: 16px 6.5%; scroll-snap-align: end; scroll-snap-stop: always; }
+.site-footer { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: auto auto; gap: 10px 24px; min-height: 96px; padding: 16px 6.5%; scroll-snap-align: end; }
 .site-footer .footer-copyright { grid-column: 1; grid-row: 1 / 3; align-self: center; }
 .site-footer .footer-social { grid-column: 2; grid-row: 1; justify-self: center; gap: 25px; }
 .site-footer .footer-legal { grid-column: 2; grid-row: 2; display: flex; justify-self: center; gap: 18px; }
@@ -349,10 +349,14 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 .hero-policy-link { display: inline-block; padding-bottom: 5px; border-bottom: 1px solid rgba(240,233,220,.28); color: #a9a197; font: 8px var(--mono); letter-spacing: .15em; text-decoration: none; white-space: nowrap; transition: color .2s,border-color .2s; }
 .hero-policy-link:hover { color: var(--paper); border-color: var(--red); }
 @media (max-width: 640px) {
-  .hero-bottom-links { bottom: 18px; gap: 24px; }
+  .hero-bottom-links { bottom: calc(env(safe-area-inset-bottom) + 56px); gap: 24px; }
   .hero-bottom-links .hero-policy-link { align-self: flex-start; margin-top: 1px; }
   .hero-policy-link { font-size: 7px; letter-spacing: .08em; }
   .hero-bottom-links .scroll-cue { font-size: 7px; letter-spacing: .12em; }
+}
+.contact-section > .site-footer { width: calc(100% + 16vw); margin: auto -8vw -32px; background: #000; scroll-snap-align: none; }
+@media (max-width: 640px) {
+  .contact-section > .site-footer { width: calc(100% + 12vw); margin-right: -6vw; margin-left: -6vw; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; scroll-snap-type: none; }

@@ -209,18 +209,17 @@ function App() {
           <h2>Hai qualcosa<br />da <span>dire?</span></h2>
           <a className="contact-email" href="mailto:info@thebutchersrecords.it">info@thebutchersrecords.it <ArrowIcon diagonal /></a>
           <div className="contact-bottom"><BrandMark compact /><span>NOI NON FACCIAMO RUMORE. LO PUBBLICHIAMO.</span></div>
+          <footer className="site-footer">
+            <span className="footer-copyright">© {new Date().getFullYear()} THE BUTCHERS RECORDS</span>
+            <div className="footer-social"><span>INSTAGRAM</span><span>SPOTIFY</span></div>
+            <div className="footer-legal">
+              <a href="https://www.iubenda.com/privacy-policy/70676554" className="footer-policy-link" title="Privacy Policy" target="_blank" rel="noopener noreferrer">PRIVACY</a>
+              <a href="https://www.iubenda.com/privacy-policy/70676554/cookie-policy" className="footer-policy-link" title="Cookie Policy" target="_blank" rel="noopener noreferrer">COOKIE POLICY</a>
+            </div>
+            <a className="footer-back" href="#home">TORNA SU ↑</a>
+          </footer>
         </section>
       </main>
-
-      <footer className="site-footer">
-        <span className="footer-copyright">© {new Date().getFullYear()} THE BUTCHERS RECORDS</span>
-        <div className="footer-social"><span>INSTAGRAM</span><span>SPOTIFY</span></div>
-        <div className="footer-legal">
-          <a href="https://www.iubenda.com/privacy-policy/70676554" className="footer-policy-link" title="Privacy Policy" target="_blank" rel="noopener noreferrer">PRIVACY</a>
-          <a href="https://www.iubenda.com/privacy-policy/70676554/cookie-policy" className="footer-policy-link" title="Cookie Policy" target="_blank" rel="noopener noreferrer">COOKIE POLICY</a>
-        </div>
-        <a className="footer-back" href="#home">TORNA SU ↑</a>
-      </footer>
     </>
   )
 }
