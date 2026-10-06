@@ -102,7 +102,11 @@ function BrandMark({ compact = false }: { compact?: boolean }) {
 }
 
 function ArrowIcon({ diagonal = false }: { diagonal?: boolean }) {
-  return <span aria-hidden="true" className="arrow-icon">{diagonal ? '↗' : '→'}</span>
+  return (
+    <svg aria-hidden="true" className="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      {diagonal ? <path d="M6 14 14 6M7 6h7v7" /> : <path d="M3 10h14m-6-6 6 6-6 6" />}
+    </svg>
+  )
 }
 
 function App() {
@@ -197,7 +201,7 @@ function App() {
         </section>
 
         <section className="contact-section" id="contatti">
-          <div className="contact-top"><span className="eyebrow">DEMO, COLLABORAZIONI, BUONE IDEE</span><span className="contact-spark" aria-hidden="true">✳</span></div>
+          <div className="contact-top"><span className="eyebrow">DEMO, COLLABORAZIONI, BUONE IDEE</span><span className="contact-spark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 1.5 19 11l7-7-4 9.5 9.5 2.5L22 19l4 9.5-7-7-3 9.5-3-9.5-7 7 4-9.5L0.5 16l9.5-2.5L6 4l7 7 3-9.5Z" fill="currentColor" /></svg></span></div>
           <h2>Hai qualcosa<br />da <span>dire?</span></h2>
           <a className="contact-email" href="mailto:info@thebutchersrecords.it">info@thebutchersrecords.it <ArrowIcon diagonal /></a>
           <div className="contact-bottom"><BrandMark compact /><span>NOI NON FACCIAMO RUMORE. LO PUBBLICHIAMO.</span></div>
