@@ -219,8 +219,8 @@ function App() {
         <div>
           <span>INSTAGRAM</span>
           <span>SPOTIFY</span>
-          <a href="https://www.iubenda.com/privacy-policy/70676554" className="iubenda-noiframe iubenda-embed footer-policy-link" title="Privacy Policy">Privacy Policy</a>
-          <a href="https://www.iubenda.com/privacy-policy/70676554/cookie-policy" className="iubenda-noiframe iubenda-embed footer-policy-link" title="Cookie Policy">Cookie Policy</a>
+          <a href="https://www.iubenda.com/privacy-policy/70676554" className="footer-policy-link" title="Privacy Policy" target="_blank" rel="noopener noreferrer">PRIVACY</a>
+          <a href="https://www.iubenda.com/privacy-policy/70676554/cookie-policy" className="footer-policy-link" title="Cookie Policy" target="_blank" rel="noopener noreferrer">COOKIE POLICY</a>
         </div>
         <a href="#home">TORNA SU ↑</a>
       </footer>
