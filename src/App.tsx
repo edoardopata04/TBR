@@ -215,14 +215,13 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <span>© {new Date().getFullYear()} THE BUTCHERS RECORDS</span>
-        <div>
-          <span>INSTAGRAM</span>
-          <span>SPOTIFY</span>
+        <span className="footer-copyright">© {new Date().getFullYear()} THE BUTCHERS RECORDS</span>
+        <div className="footer-social"><span>INSTAGRAM</span><span>SPOTIFY</span></div>
+        <div className="footer-legal">
           <a href="https://www.iubenda.com/privacy-policy/70676554" className="footer-policy-link" title="Privacy Policy" target="_blank" rel="noopener noreferrer">PRIVACY</a>
           <a href="https://www.iubenda.com/privacy-policy/70676554/cookie-policy" className="footer-policy-link" title="Cookie Policy" target="_blank" rel="noopener noreferrer">COOKIE POLICY</a>
         </div>
-        <a href="#home">TORNA SU ↑</a>
+        <a className="footer-back" href="#home">TORNA SU ↑</a>
       </footer>
     </>
   )
