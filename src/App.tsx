@@ -205,14 +205,17 @@ function App() {
         </section>
 
         <section className="contact-section" id="contatti">
-          <div className="contact-top"><span className="eyebrow">DEMO, COLLABORAZIONI, BUONE IDEE</span><span className="contact-spark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 1.5 19 11l7-7-4 9.5 9.5 2.5L22 19l4 9.5-7-7-3 9.5-3-9.5-7 7 4-9.5L0.5 16l9.5-2.5L6 4l7 7 3-9.5Z" fill="currentColor" /></svg></span></div>
-          <h2>Hai qualcosa<br />da <span>dire?</span></h2>
-          <a className="contact-email" href="mailto:info@thebutchersrecords.it">info@thebutchersrecords.it <ArrowIcon diagonal /></a>
-          <div className="contact-bottom"><BrandMark compact /><span>NOI NON FACCIAMO RUMORE. LO PUBBLICHIAMO.</span></div>
+          <div className="contact-content">
+            <div className="contact-top"><span className="eyebrow">DEMO, COLLABORAZIONI, BUONE IDEE</span><span className="contact-spark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 1.5 19 11l7-7-4 9.5 9.5 2.5L22 19l4 9.5-7-7-3 9.5-3-9.5-7 7 4-9.5L0.5 16l9.5-2.5L6 4l7 7 3-9.5Z" fill="currentColor" /></svg></span></div>
+            <h2>Hai qualcosa<br />da <span>dire?</span></h2>
+            <a className="contact-email" href="mailto:info@thebutchersrecords.it">info@thebutchersrecords.it <ArrowIcon diagonal /></a>
+            <div className="contact-bottom"><BrandMark compact /><span>NOI NON FACCIAMO RUMORE. LO PUBBLICHIAMO.</span></div>
+          </div>
           <footer className="site-footer">
             <span className="footer-copyright">© {new Date().getFullYear()} THE BUTCHERS RECORDS</span>
-            <div className="footer-social"><span>INSTAGRAM</span><span>SPOTIFY</span></div>
-            <div className="footer-legal">
+            <div className="footer-links">
+              <span>INSTAGRAM</span>
+              <span>SPOTIFY</span>
               <a href="https://www.iubenda.com/privacy-policy/70676554" className="footer-policy-link" title="Privacy Policy" target="_blank" rel="noopener noreferrer">PRIVACY</a>
               <a href="https://www.iubenda.com/privacy-policy/70676554/cookie-policy" className="footer-policy-link" title="Cookie Policy" target="_blank" rel="noopener noreferrer">COOKIE POLICY</a>
             </div>
