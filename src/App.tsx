@@ -210,7 +210,12 @@ function App() {
 
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} THE BUTCHERS RECORDS</span>
-        <div><span>INSTAGRAM</span><span>SPOTIFY</span></div>
+        <div>
+          <span>INSTAGRAM</span>
+          <span>SPOTIFY</span>
+          <a href="https://www.iubenda.com/privacy-policy/70676554" className="iubenda-white iubenda-noiframe iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+          <a href="https://www.iubenda.com/privacy-policy/70676554/cookie-policy" className="iubenda-white iubenda-noiframe iubenda-embed" title="Cookie Policy">Cookie Policy</a>
+        </div>
         <a href="#home">TORNA SU ↑</a>
       </footer>
     </>
