@@ -1,0 +1,17 @@
+# Warning attesi: esclusi dalla classifica dei problemi di analyze_logs.py
+# (restano contati in metrics.json e nella riga "Warning attesi" del summary).
+# Una riga = frammento della firma "LEVEL categoria | messaggio" (case-insensitive, numeri normalizzati in N).
+# Aggiungi qui solo messaggi di routine verificati: un warning escluso non viene piu' approfondito.
+
+# Scroll della lista senza righe nuove: normale gestione stall
+WARN stall | No new rows — scrolling
+WARN stall | Same tail N rounds — checking See more / Suggested
+WARN stall | Stall limit with all rows processed — list exhausted
+
+# Scarto di candidati username non validi durante il riconoscimento dell'attore
+WARN actor_detect | S1: rid match but invalid username
+WARN actor_detect | S1: banned text, rejecting
+WARN actor_detect | S3: banned text, rejecting
+
+# Righe "Suggeriti per te" scartate volutamente
+WARN scan | Suggested boundary already passed and label off-screen
