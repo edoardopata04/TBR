@@ -35,7 +35,6 @@ button { cursor: pointer; }
 .main-nav { display: flex; align-items: center; gap: 38px; font-size: 12px; font-weight: 500; }
 .main-nav a { transition: color .2s ease; }
 .main-nav a:hover, .site-footer a:hover { color: #db7770; }
-.nav-contact { padding: 11px 16px; border: 1px solid var(--line); }
 .arrow-icon { display: inline-block; margin-left: 8px; font-size: 15px; font-weight: 400; transition: transform .2s ease; }
 a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px); }
 .menu-toggle { display: none; }
@@ -56,8 +55,6 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
 .button-light .arrow-icon { font-size: 17px; }
 .text-link { color: #d5cec3; font-size: 11px; }
 .text-link:hover { color: #fff; }
-.hero-index { max-width: 410px; margin-top: 78px; display: flex; justify-content: space-between; font: 9px var(--mono); letter-spacing: .12em; color: #746e67; }
-.hero-index span:first-child { color: var(--paper); }
 .hero-visual { position: relative; z-index: 1; justify-self: end; width: min(100%, 435px); transform: rotate(2deg); }
 .hero-image-wrap { height: min(500px, 60vh); min-height: 350px; position: relative; overflow: hidden; border: 1px solid rgba(240,233,220,.43); background: #311615; box-shadow: 22px 22px 0 rgba(169,39,37,.16); }
 .hero-image-wrap::before, .hero-image-wrap::after { content: ''; position: absolute; z-index: 2; pointer-events: none; }
@@ -119,7 +116,6 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
 .release-button .arrow-icon { font-size: 13px; }
 .release-detail { grid-column: 3 / 6; margin: -14px 0 20px; color: #b0a79c; font-size: 12px; line-height: 1.6; }
 .music-bottom { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-top: 27px; font: 9px var(--mono); letter-spacing: .12em; text-align: center; color: #827a70; }
-.music-bottom a { color: #d9d1c7; }
 
 .contact-section { padding: 82px 10.5% 0; background: #8d2523; position: relative; overflow: hidden; }
 .contact-section::after { content: 'TB'; position: absolute; right: -3%; bottom: -32%; font: 900 410px/.8 var(--display); letter-spacing: -.12em; color: rgba(23,9,8,.1); pointer-events: none; }
@@ -165,7 +161,6 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
   .main-nav { position: absolute; top: 69px; left: 0; right: 0; padding: 14px 6% 24px; flex-direction: column; align-items: stretch; gap: 0; background: #11100f; border-bottom: 1px solid var(--line); transform: translateY(-8px); opacity: 0; visibility: hidden; transition: opacity .2s,transform .2s,visibility .2s; }
   .nav-open { transform: translateY(0); opacity: 1; visibility: visible; }
   .main-nav a { padding: 15px 0; border-bottom: 1px solid rgba(240,233,220,.1); }
-  .main-nav .nav-contact { margin-top: 12px; padding: 13px; text-align: center; border: 1px solid var(--line); }
   .hero { height: auto; min-height: 0; padding: 128px 7% 69px; display: flex; flex-direction: column; align-items: stretch; }
   .hero-copy { padding-top: 0; }
   .hero h1 { margin-top: 24px; font-size: clamp(62px, 15vw, 85px); }
@@ -173,7 +168,6 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
   .hero-actions { margin-top: 25px; gap: 20px; }
   .button { min-height: 44px; padding: 0 13px; font-size: 10px; }
   .text-link { font-size: 10px; }
-  .hero-index { margin-top: 31px; }
   .hero-visual { width: 78%; min-width: 230px; margin: 49px 8px 0 auto; }
   .hero-image-wrap { min-height: 0; height: 70vw; max-height: 400px; }
   .hero-stamp { width: 68%; }
@@ -203,7 +197,6 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
   .release-button .arrow-icon { margin-left: 4px; }
   .release-detail { grid-column: 1 / 4; margin: -3px 0 15px; }
   .music-bottom { gap: 15px; font-size: 7px; letter-spacing: .07em; }
-  .music-bottom a { text-align: right; }
   .contact-section { padding: 59px 7% 0; }
   .contact-top .eyebrow { font-size: 8px; letter-spacing: .09em; }
   .contact-section h2 { margin-top: 33px; font-size: 69px; }
@@ -263,7 +256,6 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
   .hero-copy > p { font-size: 14px; }
   .hero-visual { width: 94%; min-width: 0; margin: 36px 4px 0 auto; }
   .hero-image-wrap { height: 84vw; max-height: 420px; min-height: 0; }
-  .hero-index { margin-top: 25px; }
   .section-pad { padding: 72px 6%; }
   .manifesto p { font-size: clamp(43px, 12vw, 64px); }
   .section-heading h2 { font-size: clamp(56px, 12vw, 72px); }

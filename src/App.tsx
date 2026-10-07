@@ -124,7 +124,7 @@ function App() {
           <a href="#home" onClick={closeMenu}>Home</a>
           <a href="#artisti" onClick={closeMenu}>Artisti</a>
           <a href="#musica" onClick={closeMenu}>Musica</a>
-          <a className="nav-contact" href="#contatti" onClick={closeMenu}>Contatti <ArrowIcon diagonal /></a>
+          <a href="#contatti" onClick={closeMenu}>Contatti</a>
         </nav>
       </header>
 
@@ -138,7 +138,6 @@ function App() {
               <a className="button button-light" href="#artisti">Scopri gli artisti <ArrowIcon /></a>
               <a className="text-link" href="#musica">Ultime uscite <ArrowIcon diagonal /></a>
             </div>
-            <div className="hero-index"><span>01 / 03</span><span>SINCE 2026</span></div>
           </div>
           <div className="hero-visual">
             <div className="hero-image-wrap hero-video-wrap">
@@ -201,12 +200,12 @@ function App() {
               </article>
             ))}
           </div>
-          <div className="music-bottom"><span>ASCOLTA FORTE. ASCOLTA LIBERO.</span><a href="#contatti">Segui le prossime uscite <ArrowIcon diagonal /></a></div>
+          <div className="music-bottom"><span>ASCOLTA FORTE. ASCOLTA LIBERO.</span></div>
         </section>
 
         <section className="contact-section" id="contatti">
           <div className="contact-content">
-            <div className="contact-top"><span className="eyebrow">DEMO, COLLABORAZIONI, BUONE IDEE</span><span className="contact-spark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 1.5 19 11l7-7-4 9.5 9.5 2.5L22 19l4 9.5-7-7-3 9.5-3-9.5-7 7 4-9.5L0.5 16l9.5-2.5L6 4l7 7 3-9.5Z" fill="currentColor" /></svg></span></div>
+            <div className="contact-top"><span className="eyebrow">DEMO, COLLABORAZIONI, IDEE</span><span className="contact-spark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 1.5 19 11l7-7-4 9.5 9.5 2.5L22 19l4 9.5-7-7-3 9.5-3-9.5-7 7 4-9.5L0.5 16l9.5-2.5L6 4l7 7 3-9.5Z" fill="currentColor" /></svg></span></div>
             <h2>Hai qualcosa<br />da <span>dire?</span></h2>
             <a className="contact-email" href="mailto:info@thebutchersrecords.it">info@thebutchersrecords.it <ArrowIcon diagonal /></a>
             <div className="contact-bottom"><BrandMark compact /><span>NOI NON FACCIAMO RUMORE. LO PUBBLICHIAMO.</span></div>
