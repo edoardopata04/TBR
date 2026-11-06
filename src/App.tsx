@@ -5,7 +5,7 @@ import { artists, releases } from './data'
 
 function BrandMark({ compact = false }: { compact?: boolean }) {
   return (
-    <a className={`brand ${compact ? 'brand-compact' : ''}`} href="#home" aria-label="The Butchers Records, home">
+    <a className={`brand ${compact ? 'brand-compact' : ''}`} href="#home" aria-label="THE BUTCHERS RECORDS · EST. MMXXVI — Home">
       <img className="brand-icon" src={logoImage} alt="" />
       <span className="brand-type"><strong>THE BUTCHERS</strong><small>RECORDS · EST. MMXXVI</small></span>
     </a>
@@ -52,7 +52,7 @@ function App() {
           </div>
           <div className="hero-visual">
             <div className="hero-image-wrap hero-video-wrap">
-              <video className="hero-video" src={heroVideo} poster="/og-image.jpg" autoPlay muted loop playsInline preload="metadata" aria-hidden="true" />
+              <video className="hero-video" src={heroVideo} poster="/hero-poster.webp" autoPlay muted loop playsInline preload="metadata" aria-hidden="true" />
             </div>
           </div>
           <div className="vertical-note" aria-hidden="true">MILANO · CREMONA · LODI</div>
@@ -75,7 +75,7 @@ function App() {
             {artists.map((artist) => (
               <a className="artist-card" href={artist.url} target="_blank" rel="noopener noreferrer" key={artist.name}>
                 <div className="artist-image">
-                  <img src={artist.image} alt={`${artist.name}, artista di The Butchers Records`} width="640" height="640" loading="lazy" />
+                  <img src={artist.image} alt={`${artist.name}, artista di The Butchers Records`} width="640" height="640" loading="lazy" decoding="async" />
                   <span className="artist-arrow" aria-hidden="true">→</span>
                   <div className="artist-info">
                     <h3>{artist.name}</h3>
@@ -96,7 +96,7 @@ function App() {
             {releases.map((release, index) => (
               <article className="release-card" key={release.title}>
                 <div className="release-art">
-                  <img src={release.image} alt={`Copertina di ${release.title} di ${release.artist}, uscita su The Butchers Records`} width="600" height="600" loading="lazy" />
+                  <img src={release.image} alt={`Copertina di ${release.title} di ${release.artist}, uscita su The Butchers Records`} width="600" height="600" loading="lazy" decoding="async" />
                 </div>
                 <span className="release-count" aria-hidden="true">0{index + 1}</span>
                 <div className="release-title"><span>{release.type}</span><h3>{release.title}</h3><p>{release.artist}</p></div>
