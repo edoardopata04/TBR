@@ -1,0 +1,13 @@
+{
+  "name": "The Butchers Records",
+  "short_name": "The Butchers",
+  "icons": [
+    { "src": "/logo.webp", "sizes": "128x128", "type": "image/webp", "purpose": "any" },
+    { "src": "/logo-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#0b0a09",
+  "background_color": "#0b0a09",
+  "display": "standalone",
+  "start_url": "/"
+}

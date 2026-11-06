@@ -1,3 +1,8 @@
+@font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('/fonts/dm-sans-variable.woff2') format('woff2'); }
+@font-face { font-family: 'DM Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/dm-mono-400.woff2') format('woff2'); }
+@font-face { font-family: 'DM Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/dm-mono-500.woff2') format('woff2'); }
+@font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 700 900; font-display: swap; src: url('/fonts/playfair-variable.woff2') format('woff2'); }
+
 :root {
   font-family: 'DM Sans', sans-serif;
   color: #f0e9dc;
@@ -76,20 +81,19 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
 .section-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 43px; }
 .section-heading h2 { margin: 19px 0 0; font-size: clamp(51px, 6vw, 76px); }
 .section-heading > p { margin: 0 1% 9px 0; color: #9a9288; font-size: 13px; line-height: 1.8; }
-.artist-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.artist-card { min-width: 0; }
-.artist-image { aspect-ratio: .82; position: relative; overflow: hidden; background: #26211e; }
-.artist-image::after { content: ''; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.34)); pointer-events: none; }
-.artist-image img { width: 100%; height: 100%; display: block; object-fit: cover; filter: grayscale(.63); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .5s; }
-.artist-card:hover .artist-image img { transform: scale(1.045); filter: grayscale(0); }
-.artist-number { position: absolute; z-index: 1; top: 13px; left: 14px; color: white; font: 10px var(--mono); }
-.artist-open { position: absolute; z-index: 1; bottom: 15px; right: 16px; width: 37px; height: 37px; display: grid; place-items: center; border: 1px solid rgba(240,233,220,.7); border-radius: 50%; transition: background .2s; }
-.artist-card:hover .artist-open { color: #1b1513; background: var(--paper); }
-.artist-open .arrow-icon { margin: 0; }
-.artist-info { padding: 19px 2px 0; }
+.artist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.artist-card { min-width: 0; display: block; text-decoration: none; color: inherit; }
+.artist-image { aspect-ratio: 1; position: relative; overflow: hidden; background: #26211e; }
+.artist-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.artist-card:hover .artist-image img { transform: scale(1.045); }
+.artist-image::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.42); opacity: 0; transition: opacity .3s ease; pointer-events: none; z-index: 1; }
+.artist-card:hover .artist-image::before { opacity: 1; }
+.artist-image::after { content: ''; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.6)); pointer-events: none; }
+.artist-info { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: 0 12px 22px; text-align: center; }
 .artist-meta, .release-title > span { color: #a79e93; font: 9px var(--mono); letter-spacing: .11em; }
-.artist-info h3 { margin: 8px 0 8px; font: 700 24px var(--display); letter-spacing: -.025em; }
-.artist-info p { margin: 0; max-width: 340px; color: #a59d93; font-size: 12px; line-height: 1.7; }
+.artist-info h3 { margin: 0; color: white; text-shadow: 0 1px 4px rgba(0,0,0,.55); font: 700 24px var(--display); letter-spacing: -.02em; }
+.artist-arrow { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); color: white; font-size: 32px; line-height: 1; text-shadow: 0 1px 4px rgba(0,0,0,.55); opacity: 0; transition: opacity .2s ease, transform .2s ease; }
+.artist-card:hover .artist-arrow { opacity: 1; transform: translate(calc(-50% + 6px), -50%); }
 .section-link { display: inline-block; margin-top: 37px; padding-bottom: 7px; border-bottom: 1px solid rgba(240,233,220,.4); color: #d8d0c5; font-size: 11px; }
 
 .music-section { display: flex; flex-direction: column; justify-content: center; padding-top: 105px; padding-bottom: 102px; background: #131110; }
@@ -143,9 +147,8 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
   .hero-image-wrap { min-height: 330px; }
   .vertical-note { display: none; }
   .section-pad { padding-left: 7%; padding-right: 7%; }
-  .artist-grid { gap: 14px; }
+  .artist-grid { gap: 18px; }
   .artist-info h3 { font-size: 20px; }
-  .artist-info p { font-size: 11px; }
   .release-card { grid-template-columns: 70px 28px minmax(110px,1fr) 75px 95px; gap: 12px; }
   .contact-section { padding-left: 7%; padding-right: 7%; }
 }
@@ -180,10 +183,8 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
   .section-heading > p { font-size: 12px; }
   .artist-grid { grid-template-columns: 1fr; gap: 31px; }
   .artist-image { aspect-ratio: 1.02; }
-  .artist-image img { object-position: center 38%; }
-  .artist-info { padding-top: 14px; }
+  .artist-info { padding-bottom: 14px; }
   .artist-info h3 { font-size: 24px; }
-  .artist-info p { max-width: 100%; font-size: 12px; }
   .section-link { margin-top: 29px; }
   .music-section { padding-top: 76px; padding-bottom: 71px; }
   .music-heading { margin-bottom: 27px; }
@@ -210,7 +211,7 @@ html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
 body > :not(#root):not(script) { scroll-snap-align: end; }
 .site-header { position: fixed; background: rgba(11,10,9,.58); backdrop-filter: blur(12px); }
 main > section { scroll-snap-align: start; }
-main > section.hero, main > section.manifesto, main > section.artists-section, main > section.music-section, main > section.contact-section { min-height: 100vh; min-height: 100svh; }
+main > section.hero, main > section.manifesto, main > section.artists-section, main > section.music-section, main > section.about-section, main > section.contact-section { min-height: 100vh; min-height: 100svh; }
 .hero { padding-left: 8%; padding-right: 7%; }
 .hero h1 { font-size: clamp(76px, 8.5vw, 124px); }
 .hero-copy > p { font-size: 17px; }
@@ -221,9 +222,8 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 .section-heading h2 { font-size: clamp(60px, 6.7vw, 90px); }
 .section-heading > p { font-size: 15px; }
 .artist-grid { gap: 24px; }
-.artist-image { aspect-ratio: .9; }
+.artist-image { aspect-ratio: 1; }
 .artist-info h3 { font-size: 28px; }
-.artist-info p { max-width: none; font-size: 14px; }
 .section-link { font-size: 12px; }
 .music-section { padding-top: clamp(65px, 8vh, 100px); padding-bottom: clamp(65px, 8vh, 100px); }
 .release-card { min-height: 150px; grid-template-columns: 90px 50px minmax(130px,1fr) 110px 116px; gap: 24px; }
@@ -245,7 +245,7 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
   .hero-image-wrap { height: min(460px, 60svh); min-height: 330px; }
   .section-pad { padding: clamp(72px, 8vh, 96px) 7%; }
   .section-heading h2 { font-size: clamp(58px, 7vw, 80px); }
-  .artist-image { aspect-ratio: .92; }
+  .artist-image { aspect-ratio: 1; }
   .release-card { min-height: 140px; grid-template-columns: 82px 38px minmax(100px,1fr) 85px 102px; gap: 14px; }
   .release-art { width: 76px; height: 76px; }
 }
@@ -264,8 +264,7 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
   .artist-grid::-webkit-scrollbar { display: none; }
   .artist-card { scroll-snap-align: start; }
   .artist-image { aspect-ratio: .95; }
-  .artist-info h3 { font-size: 26px; }
-  .artist-info p { font-size: 13px; }
+  .artist-info h3 { font-size: 24px; }
   .music-section { padding-top: 72px; padding-bottom: 72px; }
   .release-card { min-height: 122px; grid-template-columns: 68px minmax(0,1fr) auto; gap: 12px; }
   .release-art { width: 66px; height: 66px; }
@@ -305,8 +304,6 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 .artists-section .section-heading { width: 100%; justify-content: center; align-items: center; text-align: center; }
 .artists-section .section-heading .eyebrow { justify-content: center; }
 .artists-section .artist-grid { width: 100%; max-width: 1280px; margin-inline: auto; }
-.artists-section .artist-info { text-align: center; }
-.artists-section .artist-info p { margin-inline: auto; }
 .artists-section .section-link { align-self: center; }
 .contact-section { display: flex; min-height: 100svh; flex-direction: column; align-items: stretch; padding: 100px 8% 32px; text-align: center; }
 .contact-content { position: relative; z-index: 1; width: 100%; flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
@@ -315,6 +312,15 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 .contact-section h2 { margin: 12px 0 0; }
 .contact-bottom { width: 100%; min-height: 0; flex-direction: column; justify-content: center; gap: 18px; margin-top: 28px; padding-top: 24px; }
 .contact-bottom > span { max-width: none; text-align: center; }
+.about-section { position: relative; padding: 53px 10%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-top: 1px solid var(--line); background: #0b0a09; }
+.about-section .eyebrow { justify-content: center; }
+.about-section h2 { margin: 19px 0 24px; font: 700 clamp(44px,6vw,84px)/1.05 var(--display); letter-spacing: -.025em; }
+.about-section h2 span { color: var(--red); }
+.about-section p { margin: 0; max-width: 640px; color: #a59d93; font-size: 15px; line-height: 1.8; }
+@media (max-width: 640px) {
+  .about-section { padding: 40px 8%; }
+  .about-section p { font-size: 13px; }
+}
 @media (max-width: 640px) {
   .artists-section { padding-top: 72px; padding-bottom: 72px; }
   .artists-section .artist-grid { margin-right: 0; margin-left: 0; }
