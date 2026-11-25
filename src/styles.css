@@ -395,3 +395,6 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 @media (max-width: 640px) {
   .music-section { padding-top: 100px; }
 }
+.music-heading { width: 100%; justify-content: center; align-items: center; text-align: center; }
+.music-heading > div { width: 100%; }
+.music-heading .eyebrow { justify-content: center; }
