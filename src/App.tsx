@@ -1,31 +1,12 @@
-import { useEffect, useState } from 'react'
-import logoImage from '../public/logo.webp'
+import { useEffect } from 'react'
 import heroVideo from '../WhatsApp Video 2026-10-06 at 15.29.27.mp4'
-import { INSTAGRAM_URL, artists, releases } from './data'
+import { INSTAGRAM_URL, artistPath, artists, findArtistByPath, releases } from './data'
+import { ArtistPage } from './ArtistPage'
+import { ArrowIcon, BrandMark, ReleaseCard, SiteFooter, SiteHeader } from './shared'
 import { ConsentBanner } from './ConsentBanner'
 import { trackEvent, trackScrollDepth, trackSectionView } from './analytics'
 
-function BrandMark({ compact = false }: { compact?: boolean }) {
-  return (
-    <a className={`brand ${compact ? 'brand-compact' : ''}`} href="#home" aria-label="THE BUTCHERS RECORDS · EST. MMXXVI — Home" onClick={() => trackEvent({ name: 'navigation_click', data: { destination: 'home' } })}>
-      <img className="brand-icon" src={logoImage} alt="" />
-      <span className="brand-type"><strong>THE BUTCHERS</strong><small>RECORDS · EST. MMXXVI</small></span>
-    </a>
-  )
-}
-
-function ArrowIcon({ diagonal = false }: { diagonal?: boolean }) {
-  return (
-    <svg aria-hidden="true" className="arrow-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      {diagonal ? <path d="M6 14 14 6M7 6h7v7" /> : <path d="M3 10h14m-6-6 6 6-6 6" />}
-    </svg>
-  )
-}
-
-function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const closeMenu = () => setMenuOpen(false)
-
+function HomePage() {
   useEffect(() => {
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -63,20 +44,9 @@ function App() {
 
   return (
     <>
-      <header className="site-header">
-        <BrandMark />
-        <button className="menu-toggle" type="button" aria-label={menuOpen ? 'Chiudi menu' : 'Apri menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
-          <span /><span />
-        </button>
-        <nav className={menuOpen ? 'main-nav nav-open' : 'main-nav'} aria-label="Navigazione principale">
-          <a href="#home" onClick={() => { trackEvent({ name: 'navigation_click', data: { destination: 'home' } }); closeMenu() }}>Home</a>
-          <a href="#artisti" onClick={() => { trackEvent({ name: 'navigation_click', data: { destination: 'artisti' } }); closeMenu() }}>Artisti</a>
-          <a href="#musica" onClick={() => { trackEvent({ name: 'navigation_click', data: { destination: 'musica' } }); closeMenu() }}>Musica</a>
-          <a href="#contatti" onClick={() => { trackEvent({ name: 'navigation_click', data: { destination: 'contatti' } }); closeMenu() }}>Contatti</a>
-        </nav>
-      </header>
+      <SiteHeader />
 
-      <main>
+      <main id="top">
         <section className="hero" id="home" aria-labelledby="hero-title">
           <div className="hero-copy">
             <div className="eyebrow"><span className="live-dot" /> ETICHETTA INDIPENDENTE · ITALIA</div>
@@ -110,7 +80,7 @@ function App() {
           </div>
           <div className="artist-grid">
             {artists.map((artist) => (
-              <a className="artist-card" href={artist.url} target="_blank" rel="noopener noreferrer" key={artist.name} onClick={() => trackEvent({ name: 'artist_profile_click', data: { artist: artist.name } })}>
+              <a className="artist-card" href={artistPath(artist)} key={artist.name} onClick={() => trackEvent({ name: 'artist_profile_click', data: { artist: artist.name } })}>
                 <div className="artist-image">
                   <img src={artist.image} alt={`${artist.name}, artista di The Butchers Records`} width="640" height="640" loading="lazy" decoding="async" />
                   <span className="artist-arrow" aria-hidden="true">→</span>
@@ -130,20 +100,7 @@ function App() {
             
           </div>
           <div className="release-list">
-            {releases.map((release, index) => (
-              <article className="release-card" key={release.title}>
-                <div className="release-art">
-                  <img src={release.image} alt={`Copertina di ${release.title} di ${release.artist}, uscita su The Butchers Records`} width="600" height="600" loading="lazy" decoding="async" />
-                </div>
-                <span className="release-count" aria-hidden="true">0{index + 1}</span>
-                <div className="release-title"><span>{release.type}</span><h3>{release.title}</h3><p>{release.artist}</p></div>
-                <time className="release-date" dateTime={release.releaseDate}>{release.date}</time>
-                <div className="release-links" aria-label={`Ascolta ${release.title}`}>
-                  <a className="release-button" href={release.spotifyUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent({ name: 'release_stream_click', data: { release: release.title, artist: release.artist, platform: 'spotify' } })}>Spotify <ArrowIcon diagonal /></a>
-                  <a className="release-button" href={release.appleMusicUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent({ name: 'release_stream_click', data: { release: release.title, artist: release.artist, platform: 'apple_music' } })}>Apple Music <ArrowIcon diagonal /></a>
-                </div>
-              </article>
-            ))}
+            {releases.map((release, index) => <ReleaseCard release={release} index={index} key={release.title} />)}
           </div>
           <div className="music-bottom"><span>ASCOLTA FORTE. ASCOLTA LIBERO.</span></div>
         </section>
@@ -168,19 +125,17 @@ function App() {
             </a>
             <div className="contact-bottom"><BrandMark compact /><span>NOI NON FACCIAMO RUMORE. LO PUBBLICHIAMO.</span></div>
           </div>
-          <footer className="site-footer">
-            <span className="footer-copyright">© {new Date().getFullYear()} THE BUTCHERS RECORDS</span>
-            <div className="footer-links">
-              <a href="/privacy/" className="footer-policy-link">PRIVACY</a>
-              <a href="/privacy/#cookie" className="footer-policy-link">COOKIE POLICY</a>
-            </div>
-            <a className="footer-back" href="#home">TORNA SU ↑</a>
-          </footer>
+          <SiteFooter />
         </section>
       </main>
       <ConsentBanner />
     </>
   )
+}
+
+function App({ path }: { path: string }) {
+  const artist = findArtistByPath(path)
+  return artist ? <ArtistPage artist={artist} /> : <HomePage />
 }
 
 export default App

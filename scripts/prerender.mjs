@@ -11,7 +11,7 @@ if (!existsSync(ssrEntry)) {
   process.exit(1)
 }
 
-const { render, buildJsonLd } = await import(pathToFileURL(ssrEntry).href)
+const { render, buildJsonLd, artistPages } = await import(pathToFileURL(ssrEntry).href)
 
 const html = readFileSync(join(distDir, 'index.html'), 'utf8')
 const body = render()
@@ -26,9 +26,39 @@ let output = html
 
 mkdirSync(distDir, { recursive: true })
 writeFileSync(join(distDir, 'index.html'), output)
+
+const escapeHtml = (text) => text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
+const pages = artistPages()
+for (const page of pages) {
+  const url = `https://thebutchersrecords.it${page.path}`
+  const title = escapeHtml(page.title)
+  const description = escapeHtml(page.description)
+  const head = [
+    ...page.jsonLd.map((node) => `<script type="application/ld+json">${node}</script>`),
+    `<title>${title}</title>`,
+    `<meta name="description" content="${description}" />`,
+    `<link rel="canonical" href="${url}" />`,
+    '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />',
+    '<meta property="og:locale" content="it_IT" />',
+    '<meta property="og:type" content="profile" />',
+    '<meta property="og:site_name" content="The Butchers Records" />',
+    `<meta property="og:title" content="${title}" />`,
+    `<meta property="og:description" content="${description}" />`,
+    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:image" content="${page.image}" />`,
+    '<meta name="twitter:card" content="summary_large_image" />',
+  ].join('\n    ')
+  const pageHtml = html
+    .replace(/<!-- seo:start -->[\s\S]*<!-- seo:end -->/, () => head)
+    .replace(/\s*<link rel="preload" href="\/hero-poster[^>]*>/, '')
+    .replace('<html lang="it">', '<html lang="it" class="no-snap">')
+    .replace('<div id="root"></div>', () => `<div id="root">${render(page.path)}</div>`)
+  mkdirSync(join(distDir, page.path), { recursive: true })
+  writeFileSync(join(distDir, page.path, 'index.html'), pageHtml)
+}
 writeFileSync(
   join(distDir, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://thebutchersrecords.it/</loc>\n    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://thebutchersrecords.it/privacy/</loc>\n  </url>\n</urlset>\n`,
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://thebutchersrecords.it/</loc>\n    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://thebutchersrecords.it/privacy/</loc>\n  </url>\n${pages.map((page) => `  <url>\n    <loc>https://thebutchersrecords.it${page.path}</loc>\n  </url>\n`).join('')}</urlset>\n`,
 )
 
 console.log('Prerendered index.html with', body.length, 'chars of markup and', jsonLd.split('<script').length - 1, 'JSON-LD blocks.')

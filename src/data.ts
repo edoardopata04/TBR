@@ -10,8 +10,12 @@ export const BASE_CITIES = ['Milano', 'Cremona', 'Lodi']
 
 export type Artist = {
   name: string
+  slug: string
   image: string
   url: string
+  // Optional: shown on the artist page when present.
+  bio?: string
+  instagramUrl?: string
 }
 
 export type Release = {
@@ -28,26 +32,31 @@ export type Release = {
 export const artists: Artist[] = [
   {
     name: 'Lucky Voda',
+    slug: 'lucky-voda',
     image: '/artists/lucky-voda.webp',
     url: 'https://open.spotify.com/artist/6Qzh8PLrvBoOtexkMOTD7W',
   },
   {
     name: 'Piace',
+    slug: 'piace',
     image: '/artists/piace.webp',
     url: 'https://open.spotify.com/artist/6vd6ggzbZ4YJNHS5bEOa6n',
   },
   {
     name: 'VEETO',
+    slug: 'veeto',
     image: '/artists/veeto.webp',
     url: 'https://open.spotify.com/artist/7atRlCMrR0qaLAMfVtREqk',
   },
   {
     name: 'LOZA',
+    slug: 'loza',
     image: '/artists/loza.webp',
     url: 'https://open.spotify.com/artist/35AJBUTc0quoTGq7odsDUZ',
   },
   {
     name: 'mantra',
+    slug: 'mantra',
     image: '/artists/mantra.webp',
     url: 'https://open.spotify.com/artist/7svXU96QB0soB9xwYxfUpZ',
   },
@@ -105,3 +114,15 @@ export const releases: Release[] = [
     appleMusicUrl: 'https://music.apple.com/it/album/ghiaccio-single/1869118247',
   },
 ]
+
+export function artistPath(artist: Artist) {
+  return `/artisti/${artist.slug}/`
+}
+
+export function releasesByArtist(artist: Artist) {
+  return releases.filter((release) => release.artist.split(/ & | feat\. /).includes(artist.name))
+}
+
+export function findArtistByPath(path: string) {
+  return artists.find((artist) => artistPath(artist) === `${path.replace(/\/+$/, '')}/`)
+}

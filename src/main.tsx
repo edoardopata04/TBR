@@ -5,6 +5,6 @@ import './styles.css'
 
 hydrateRoot(document.getElementById('root')!,
   <React.StrictMode>
-    <App />
+    <App path={window.location.pathname} />
   </React.StrictMode>,
 )

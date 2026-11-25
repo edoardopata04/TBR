@@ -410,3 +410,20 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 @media (min-width: 641px) {
   .music-section { padding-top: 120px; }
 }
+html.no-snap { scroll-snap-type: none; }
+.artist-page { max-width: 1160px; margin: 0 auto; padding: 120px 6% 72px; }
+.artist-back { display: inline-flex; align-items: center; min-height: 44px; color: #b8afa4; font-size: 14px; }
+.artist-hero { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: center; gap: 48px; margin-top: 12px; }
+.artist-hero img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.artist-hero h1 { margin: 18px 0; font: 800 clamp(48px, 8vw, 100px)/1 var(--display); letter-spacing: -.045em; overflow-wrap: anywhere; }
+.artist-hero p { margin: 0 0 24px; color: #b8afa4; font-size: 16px; line-height: 1.7; white-space: pre-line; }
+.artist-links { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.artist-releases, .artist-others { margin-top: 72px; }
+.artist-page h2 { margin: 0 0 24px; font: 700 32px/1.1 var(--display); }
+.artist-others > div { display: flex; flex-wrap: wrap; gap: 10px; }
+.artist-others a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--line); font-size: 15px; }
+.artist-others a:hover { background: var(--paper); color: var(--bg); }
+@media (max-width: 640px) {
+  .artist-page { padding-top: 88px; }
+  .artist-hero { grid-template-columns: 1fr; gap: 24px; }
+}

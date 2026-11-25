@@ -1,10 +1,10 @@
 import { renderToString } from 'react-dom/server'
-import { BASE_CITIES, CONTACT_EMAIL, FOUNDING_YEAR, INSTAGRAM_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL, artists, releases } from './data'
+import { BASE_CITIES, CONTACT_EMAIL, FOUNDING_YEAR, INSTAGRAM_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL, artistPath, artists, releases, releasesByArtist } from './data'
 import type { Artist, Release } from './data'
 import App from './App'
 
-export function render() {
-  return renderToString(<App />)
+export function render(path = '/') {
+  return renderToString(<App path={path} />)
 }
 
 export function toAbsolute(url: string) {
@@ -13,6 +13,33 @@ export function toAbsolute(url: string) {
 }
 
 const labelId = `${SITE_URL}/#organization`
+
+function artistNode(artist: Artist) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MusicGroup',
+    name: artist.name,
+    image: toAbsolute(artist.image),
+    url: `${SITE_URL}${artistPath(artist)}`,
+    sameAs: artist.instagramUrl ? [artist.url, artist.instagramUrl] : artist.url,
+    recordLabel: { '@id': labelId },
+  }
+}
+
+function releaseNode(release: Release) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MusicRecording',
+    name: release.title,
+    byArtist: { '@type': 'MusicGroup', name: release.artist.split(' feat. ')[0] },
+    datePublished: release.releaseDate,
+    image: toAbsolute(release.image),
+    url: release.spotifyUrl,
+    sameAs: [release.spotifyUrl, release.appleMusicUrl],
+    inLanguage: 'it',
+    recordLabel: { '@id': labelId },
+  }
+}
 
 export function buildJsonLd() {
   const organization = {
@@ -46,30 +73,25 @@ export function buildJsonLd() {
     publisher: { '@id': labelId },
   }
 
-  const artistNodes = artists.map((artist: Artist) => ({
-    '@context': 'https://schema.org',
-    '@type': 'MusicGroup',
-    name: artist.name,
-    image: artist.image,
-    url: artist.url,
-    sameAs: artist.url,
-    recordLabel: { '@id': labelId },
-  }))
+  const artistNodes = artists.map(artistNode)
 
-  const releaseNodes = releases.map((release: Release) => ({
-    '@context': 'https://schema.org',
-    '@type': 'MusicRecording',
-    name: release.title,
-    byArtist: { '@type': 'MusicGroup', name: release.artist.split(' feat. ')[0] },
-    datePublished: release.releaseDate,
-    image: toAbsolute(release.image),
-    url: release.spotifyUrl,
-    sameAs: [release.spotifyUrl, release.appleMusicUrl],
-    inLanguage: 'it',
-    recordLabel: { '@id': labelId },
-  }))
+  const releaseNodes = releases.map(releaseNode)
 
   return [organization, website, ...artistNodes, ...releaseNodes]
     .map((node) => JSON.stringify(node).replace(/</g, '\\u003c'))
     .join('\n')
+}
+
+export function artistPages() {
+  return artists.map((artist) => {
+    const releaseTitles = releasesByArtist(artist).map((release) => release.title)
+    return {
+      path: artistPath(artist),
+      title: `${artist.name} — The Butchers Records`,
+      description: `${artist.name} su The Butchers Records, etichetta indipendente tra Milano, Cremona e Lodi.${releaseTitles.length ? ` Ascolta ${releaseTitles.join(', ')}.` : ''}`,
+      image: toAbsolute(artist.image),
+      jsonLd: [artistNode(artist), ...releasesByArtist(artist).map(releaseNode)]
+        .map((node) => JSON.stringify(node).replace(/</g, '\\u003c')),
+    }
+  })
 }

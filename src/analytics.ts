@@ -4,6 +4,7 @@ type AnalyticsEvent =
   | { name: 'navigation_click'; data: { destination: string } }
   | { name: 'hero_cta_click'; data: { destination: 'artisti' | 'musica' } }
   | { name: 'artist_profile_click'; data: { artist: string } }
+  | { name: 'artist_link_click'; data: { artist: string; platform: 'spotify' | 'instagram' } }
   | {
       name: 'release_stream_click'
       data: { release: string; artist: string; platform: 'spotify' | 'apple_music' }
