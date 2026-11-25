@@ -406,3 +406,7 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 @media (max-width: 640px) {
   .consent-banner { flex-direction: column; align-items: stretch; gap: 10px; }
 }
+/* Il titolo di Musica non deve finire sotto l'header fisso */
+@media (min-width: 641px) {
+  .music-section { padding-top: 120px; }
+}

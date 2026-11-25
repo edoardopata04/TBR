@@ -62,7 +62,7 @@ export const releases: Release[] = [
     releaseDate: '2026-09-07',
     image: '/releases/cinquegi.webp',
     spotifyUrl: 'https://open.spotify.com/track/0Muvm8JAjiK2AJJAjKbioI',
-    appleMusicUrl: 'https://music.apple.com/us/album/cinquegi-single/6809282172',
+    appleMusicUrl: 'https://music.apple.com/it/album/cinquegi-single/6809282172',
   },
   {
     title: 'Se Va Tutto Bene',
@@ -72,7 +72,7 @@ export const releases: Release[] = [
     releaseDate: '2026-08-16',
     image: '/releases/se-va-tutto-bene.webp',
     spotifyUrl: 'https://open.spotify.com/track/6fFive3GKeR3gfbpHwAktx',
-    appleMusicUrl: 'https://music.apple.com/us/album/se-va-tutto-bene-single/6799185962',
+    appleMusicUrl: 'https://music.apple.com/it/album/se-va-tutto-bene-single/6799185962',
   },
   {
     title: 'TIC TAC',
@@ -82,7 +82,7 @@ export const releases: Release[] = [
     releaseDate: '2026-06-10',
     image: '/releases/tic-tac.webp',
     spotifyUrl: 'https://open.spotify.com/intl-it/album/6ObgQVmDaJptErXGiZeuqJ?si=f7f26217bef8491a',
-    appleMusicUrl: 'https://music.apple.com/us/album/tic-tac-feat-piace-single/6775021059',
+    appleMusicUrl: 'https://music.apple.com/it/album/tic-tac-feat-piace-single/6775021059',
   },
   {
     title: 'Dove sei bro?',
@@ -92,7 +92,7 @@ export const releases: Release[] = [
     releaseDate: '2026-06-05',
     image: '/releases/dove-sei-bro.webp',
     spotifyUrl: 'https://open.spotify.com/track/33MhXNVfapjjzYalQOPtXD',
-    appleMusicUrl: 'https://music.apple.com/us/album/dove-sei-bro-single/6775787113',
+    appleMusicUrl: 'https://music.apple.com/it/album/dove-sei-bro-single/6775787113',
   },
   {
     title: '+ghiaccio',
@@ -102,6 +102,6 @@ export const releases: Release[] = [
     releaseDate: '2026-02-13',
     image: '/releases/ghiaccio.webp',
     spotifyUrl: 'https://open.spotify.com/intl-it/album/1LD25K6b96lYaNww1raJXK?si=5d1cf3dad89c4ace',
-    appleMusicUrl: 'https://music.apple.com/us/album/ghiaccio-single/1869118247',
+    appleMusicUrl: 'https://music.apple.com/it/album/ghiaccio-single/1869118247',
   },
 ]
