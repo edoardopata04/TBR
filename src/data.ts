@@ -34,39 +34,51 @@ export type Release = {
   ownLabel?: boolean
 }
 
+// Hashed file names: replacing a photo changes its URL, so browsers never show a stale copy.
+const artistImages = import.meta.glob<string>('./artists/*.webp', { eager: true, query: '?url', import: 'default' })
+
+function artistImage(slug: string) {
+  return artistImages[`./artists/${slug}.webp`]
+}
+
 export const artists: Artist[] = [
   {
     name: 'Lucky Voda',
     slug: 'lucky-voda',
     appleMusicUrl: 'https://music.apple.com/it/artist/lucky-voda/1811115411',
-    image: '/artists/lucky-voda.webp',
+    image: artistImage('lucky-voda'),
+    instagramUrl: 'https://www.instagram.com/luckyvoda/',
     url: 'https://open.spotify.com/artist/6Qzh8PLrvBoOtexkMOTD7W',
   },
   {
     name: 'Piace',
     slug: 'piace',
     appleMusicUrl: 'https://music.apple.com/it/artist/piace/1832302262',
-    image: '/artists/piace.webp',
+    image: artistImage('piace'),
+    instagramUrl: 'https://www.instagram.com/piace_tbr/',
     url: 'https://open.spotify.com/artist/6vd6ggzbZ4YJNHS5bEOa6n',
   },
   {
     name: 'VEETO',
     slug: 'veeto',
     appleMusicUrl: 'https://music.apple.com/it/artist/veeto/1863084261',
-    image: '/artists/veeto.webp',
+    image: artistImage('veeto'),
+    instagramUrl: 'https://www.instagram.com/veetot2t/',
     url: 'https://open.spotify.com/artist/7atRlCMrR0qaLAMfVtREqk',
   },
   {
     name: 'LOZA',
     slug: 'loza',
-    image: '/artists/loza.webp',
+    image: artistImage('loza'),
+    instagramUrl: 'https://www.instagram.com/lozaart_/',
     url: 'https://open.spotify.com/artist/35AJBUTc0quoTGq7odsDUZ',
   },
   {
     name: 'mantra',
     slug: 'mantra',
     appleMusicUrl: 'https://music.apple.com/it/artist/mantra/1810567823',
-    image: '/artists/mantra.webp',
+    image: artistImage('mantra'),
+    instagramUrl: 'https://www.instagram.com/mantrapdv/',
     url: 'https://open.spotify.com/artist/7svXU96QB0soB9xwYxfUpZ',
   },
 ]
@@ -137,6 +149,7 @@ export const releases: Release[] = [
     image: '/releases/lidea-sbagliata.webp',
     spotifyUrl: 'https://open.spotify.com/track/6aH3XAOyc0xk4wM8l3NNwC',
     appleMusicUrl: 'https://music.apple.com/it/album/lidea-sbagliata-feat-mantra-single/6765916481',
+    featured: true,
     ownLabel: true,
   },
   {
@@ -259,7 +272,9 @@ export function artistPath(artist: Artist) {
   return `/artisti/${artist.slug}/`
 }
 
-export const featuredReleases = releases.filter((release) => release.featured)
+export const featuredReleases = releases
+  .filter((release) => release.featured)
+  .sort((a, b) => b.releaseDate.localeCompare(a.releaseDate))
 
 export function releasesByArtist(artist: Artist) {
   return releases.filter((release) => release.artist.split(/ & | feat\. /).includes(artist.name))

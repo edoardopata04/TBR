@@ -429,3 +429,10 @@ html.no-snap { scroll-snap-type: none; }
 }
 .artist-button-outline { border: 1px solid var(--paper); color: var(--paper); }
 .artist-links { gap: 12px; }
+@media (min-width: 901px) {
+  .artists-section .artist-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+  .artist-info h3 { font-size: clamp(20px, 2vw, 28px); }
+}
+@media (min-width: 641px) {
+  .artists-section { padding-top: 120px; }
+}
