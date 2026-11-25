@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import logoImage from '../public/logo.webp'
 import heroVideo from '../WhatsApp Video 2026-10-06 at 15.29.27.mp4'
 import { INSTAGRAM_URL, artists, releases } from './data'
-import { initializeAnalytics, trackEvent, trackScrollDepth, trackSectionView } from './analytics'
+import { ConsentBanner } from './ConsentBanner'
+import { trackEvent, trackScrollDepth, trackSectionView } from './analytics'
 
 function BrandMark({ compact = false }: { compact?: boolean }) {
   return (
@@ -26,8 +27,6 @@ function App() {
   const closeMenu = () => setMenuOpen(false)
 
   useEffect(() => {
-    initializeAnalytics()
-
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -95,9 +94,9 @@ function App() {
           </div>
           <div className="vertical-note" aria-hidden="true">MILANO · CREMONA · LODI</div>
           <div className="hero-bottom-links">
-            <a className="hero-policy-link" href="https://www.iubenda.com/privacy-policy/70676554" target="_blank" rel="noopener noreferrer">PRIVACY</a>
+            <a className="hero-policy-link" href="/privacy/">PRIVACY</a>
             <a className="scroll-cue" href="#manifesto"><span>SCORRI PER SCOPRIRE</span><span aria-hidden="true">↓</span></a>
-            <a className="hero-policy-link" href="https://www.iubenda.com/privacy-policy/70676554/cookie-policy" target="_blank" rel="noopener noreferrer">COOKIE POLICY</a>
+            <a className="hero-policy-link" href="/privacy/#cookie">COOKIE POLICY</a>
           </div>
         </section>
 
@@ -172,13 +171,14 @@ function App() {
           <footer className="site-footer">
             <span className="footer-copyright">© {new Date().getFullYear()} THE BUTCHERS RECORDS</span>
             <div className="footer-links">
-              <a href="https://www.iubenda.com/privacy-policy/70676554" className="footer-policy-link" title="Privacy Policy" target="_blank" rel="noopener noreferrer">PRIVACY</a>
-              <a href="https://www.iubenda.com/privacy-policy/70676554/cookie-policy" className="footer-policy-link" title="Cookie Policy" target="_blank" rel="noopener noreferrer">COOKIE POLICY</a>
+              <a href="/privacy/" className="footer-policy-link">PRIVACY</a>
+              <a href="/privacy/#cookie" className="footer-policy-link">COOKIE POLICY</a>
             </div>
             <a className="footer-back" href="#home">TORNA SU ↑</a>
           </footer>
         </section>
       </main>
+      <ConsentBanner />
     </>
   )
 }

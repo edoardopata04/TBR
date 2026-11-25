@@ -13,8 +13,11 @@ type AnalyticsEvent =
   | { name: 'section_view'; data: { section: SectionName } }
   | { name: 'scroll_depth'; data: { percent: 25 | 50 | 75 | 100 } }
 
+type UmamiPayload = { url?: string; referrer?: string }
+
 declare global {
   interface Window {
+    tbrBeforeSend?: (type: string, payload: UmamiPayload) => UmamiPayload
     umami?: {
       track: (eventName: string, eventData?: Record<string, string | number>) => void
     }
@@ -26,21 +29,56 @@ const pendingEvents: AnalyticsEvent[] = []
 const viewedSections = new Set<SectionName>()
 const reachedScrollDepths = new Set<25 | 50 | 75 | 100>()
 let initialized = false
+let allowed = false
+
+export const analyticsConfigured = Boolean(websiteId)
+
+const campaignParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
+
+// Keeps campaign parameters only: other query parameters (fbclid, etc.) are never sent.
+function keepCampaignParams(value: string) {
+  try {
+    const url = new URL(value, window.location.origin)
+    const params = new URLSearchParams()
+    campaignParams.forEach((key) => {
+      const param = url.searchParams.get(key)
+      if (param) params.set(key, param)
+    })
+    url.search = params.toString()
+    return url.origin === window.location.origin ? `${url.pathname}${url.search}` : url.toString()
+  } catch {
+    return ''
+  }
+}
+
+function beforeSend(_type: string, payload: UmamiPayload): UmamiPayload {
+  return {
+    ...payload,
+    ...(payload.url && { url: keepCampaignParams(payload.url) }),
+    ...(payload.referrer && { referrer: keepCampaignParams(payload.referrer) }),
+  }
+}
 
 function sendEvent(event: AnalyticsEvent) {
   window.umami?.track(event.name, event.data)
 }
 
-export function initializeAnalytics() {
+export function allowAnalytics() {
+  allowed = true
+  initializeAnalytics()
+}
+
+function initializeAnalytics() {
   if (!websiteId || initialized || typeof document === 'undefined') return
 
   initialized = true
+  window.tbrBeforeSend = beforeSend
   const script = document.createElement('script')
   script.defer = true
   script.src = 'https://cloud.umami.is/script.js'
   script.dataset.websiteId = websiteId
   script.dataset.domains = 'thebutchersrecords.it,www.thebutchersrecords.it'
-  script.dataset.excludeSearch = 'true'
+  script.dataset.beforeSend = 'tbrBeforeSend'
   script.dataset.excludeHash = 'true'
   script.addEventListener(
     'load',
@@ -60,7 +98,7 @@ export function initializeAnalytics() {
 }
 
 export function trackEvent(event: AnalyticsEvent) {
-  if (!websiteId || typeof window === 'undefined') return
+  if (!allowed || !websiteId || typeof window === 'undefined') return
 
   if (window.umami) {
     sendEvent(event)
@@ -70,13 +108,13 @@ export function trackEvent(event: AnalyticsEvent) {
 }
 
 export function trackSectionView(section: SectionName) {
-  if (viewedSections.has(section)) return
+  if (!allowed || viewedSections.has(section)) return
   viewedSections.add(section)
   trackEvent({ name: 'section_view', data: { section } })
 }
 
 export function trackScrollDepth(percent: 25 | 50 | 75 | 100) {
-  if (reachedScrollDepths.has(percent)) return
+  if (!allowed || reachedScrollDepths.has(percent)) return
   reachedScrollDepths.add(percent)
   trackEvent({ name: 'scroll_depth', data: { percent } })
 }

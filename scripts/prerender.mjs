@@ -28,7 +28,7 @@ mkdirSync(distDir, { recursive: true })
 writeFileSync(join(distDir, 'index.html'), output)
 writeFileSync(
   join(distDir, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://thebutchersrecords.it/</loc>\n    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n`,
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://thebutchersrecords.it/</loc>\n    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n  <url>\n    <loc>https://thebutchersrecords.it/privacy/</loc>\n  </url>\n</urlset>\n`,
 )
 
 console.log('Prerendered index.html with', body.length, 'chars of markup and', jsonLd.split('<script').length - 1, 'JSON-LD blocks.')

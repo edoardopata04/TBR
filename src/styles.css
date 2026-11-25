@@ -208,7 +208,6 @@ a:hover .arrow-icon, button:hover .arrow-icon { transform: translate(3px, -2px);
   .site-footer > div { order: 3; flex-basis: 100%; justify-content: center; }
 }
 html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
-body > :not(#root):not(script) { scroll-snap-align: end; }
 .site-header { position: fixed; background: rgba(11,10,9,.58); backdrop-filter: blur(12px); }
 main > section { scroll-snap-align: start; }
 main > section.hero, main > section.manifesto, main > section.artists-section, main > section.music-section, main > section.about-section, main > section.contact-section { min-height: 100vh; min-height: 100svh; }
@@ -398,3 +397,12 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 .music-heading { width: 100%; justify-content: center; align-items: center; text-align: center; }
 .music-heading > div { width: 100%; }
 .music-heading .eyebrow { justify-content: center; }
+.consent-banner { position: fixed; right: 16px; bottom: calc(env(safe-area-inset-bottom) + 16px); left: 16px; z-index: 20; display: flex; align-items: center; gap: 20px; max-width: 640px; margin-inline: auto; padding: 14px 16px; border: 1px solid var(--line); background: #11100f; color: var(--paper); font-size: 13px; line-height: 1.45; }
+.consent-banner p { flex: 1; margin: 0; }
+.consent-banner a { text-decoration: underline; }
+.consent-banner div { display: flex; gap: 8px; }
+.consent-banner button { flex: 1; min-height: 44px; padding: 0 18px; border: 1px solid var(--paper); background: transparent; color: var(--paper); font-size: 13px; }
+.consent-banner button:hover { background: var(--paper); color: var(--bg); }
+@media (max-width: 640px) {
+  .consent-banner { flex-direction: column; align-items: stretch; gap: 10px; }
+}
