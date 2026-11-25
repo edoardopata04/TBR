@@ -1,5 +1,5 @@
 import { renderToString } from 'react-dom/server'
-import { BASE_CITIES, CONTACT_EMAIL, FOUNDING_YEAR, INSTAGRAM_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL, artistPath, artists, releases, releasesByArtist } from './data'
+import { BASE_CITIES, CONTACT_EMAIL, FOUNDING_YEAR, INSTAGRAM_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL, artistPath, artists, featuredReleases, releasesByArtist } from './data'
 import type { Artist, Release } from './data'
 import App from './App'
 
@@ -21,7 +21,7 @@ function artistNode(artist: Artist) {
     name: artist.name,
     image: toAbsolute(artist.image),
     url: `${SITE_URL}${artistPath(artist)}`,
-    sameAs: artist.instagramUrl ? [artist.url, artist.instagramUrl] : artist.url,
+    sameAs: [artist.url, artist.appleMusicUrl, artist.instagramUrl].filter(Boolean),
     recordLabel: { '@id': labelId },
   }
 }
@@ -37,7 +37,7 @@ function releaseNode(release: Release) {
     url: release.spotifyUrl,
     sameAs: [release.spotifyUrl, release.appleMusicUrl],
     inLanguage: 'it',
-    recordLabel: { '@id': labelId },
+    ...(release.ownLabel && { recordLabel: { '@id': labelId } }),
   }
 }
 
@@ -75,7 +75,7 @@ export function buildJsonLd() {
 
   const artistNodes = artists.map(artistNode)
 
-  const releaseNodes = releases.map(releaseNode)
+  const releaseNodes = featuredReleases.map(releaseNode)
 
   return [organization, website, ...artistNodes, ...releaseNodes]
     .map((node) => JSON.stringify(node).replace(/</g, '\\u003c'))
@@ -84,7 +84,7 @@ export function buildJsonLd() {
 
 export function artistPages() {
   return artists.map((artist) => {
-    const releaseTitles = releasesByArtist(artist).map((release) => release.title)
+    const releaseTitles = releasesByArtist(artist).slice(0, 3).map((release) => release.title)
     return {
       path: artistPath(artist),
       title: `${artist.name} — The Butchers Records`,

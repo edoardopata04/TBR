@@ -58,7 +58,7 @@ export function ReleaseCard({ release, index }: { release: Release; index: numbe
   return (
     <article className="release-card">
       <div className="release-art">
-        <img src={release.image} alt={`Copertina di ${release.title} di ${release.artist}, uscita su The Butchers Records`} width="600" height="600" loading="lazy" decoding="async" />
+        <img src={release.image} alt={`Copertina di ${release.title} di ${release.artist}`} width="600" height="600" loading="lazy" decoding="async" />
       </div>
       <span className="release-count" aria-hidden="true">0{index + 1}</span>
       <div className="release-title"><span>{release.type}</span><h3>{release.title}</h3><p>{release.artist}</p></div>

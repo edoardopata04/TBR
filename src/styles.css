@@ -411,7 +411,7 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
   .music-section { padding-top: 120px; }
 }
 html.no-snap { scroll-snap-type: none; }
-.artist-page { max-width: 1160px; margin: 0 auto; padding: 120px 6% 72px; }
+.artist-page { width: min(1280px, 88%); margin: 0 auto; padding: 120px 0 72px; }
 .artist-back { display: inline-flex; align-items: center; min-height: 44px; color: #b8afa4; font-size: 14px; }
 .artist-hero { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: center; gap: 48px; margin-top: 12px; }
 .artist-hero img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
@@ -427,3 +427,5 @@ html.no-snap { scroll-snap-type: none; }
   .artist-page { padding-top: 88px; }
   .artist-hero { grid-template-columns: 1fr; gap: 24px; }
 }
+.artist-button-outline { border: 1px solid var(--paper); color: var(--paper); }
+.artist-links { gap: 12px; }

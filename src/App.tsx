@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import heroVideo from '../WhatsApp Video 2026-10-06 at 15.29.27.mp4'
-import { INSTAGRAM_URL, artistPath, artists, findArtistByPath, releases } from './data'
+import { INSTAGRAM_URL, artistPath, artists, featuredReleases, findArtistByPath } from './data'
 import { ArtistPage } from './ArtistPage'
 import { ArrowIcon, BrandMark, ReleaseCard, SiteFooter, SiteHeader } from './shared'
 import { ConsentBanner } from './ConsentBanner'
@@ -100,7 +100,7 @@ function HomePage() {
             
           </div>
           <div className="release-list">
-            {releases.map((release, index) => <ReleaseCard release={release} index={index} key={release.title} />)}
+            {featuredReleases.map((release, index) => <ReleaseCard release={release} index={index} key={release.title} />)}
           </div>
           <div className="music-bottom"><span>ASCOLTA FORTE. ASCOLTA LIBERO.</span></div>
         </section>

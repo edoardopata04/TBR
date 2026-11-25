@@ -25,6 +25,7 @@ export function ArtistPage({ artist }: { artist: Artist }) {
             {artist.bio && <p>{artist.bio}</p>}
             <div className="artist-links">
               <a className="button button-light" href={artist.url} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent({ name: 'artist_link_click', data: { artist: artist.name, platform: 'spotify' } })}>Ascolta su Spotify <ArrowIcon diagonal /></a>
+              {artist.appleMusicUrl && <a className="button artist-button-outline" href={artist.appleMusicUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent({ name: 'artist_link_click', data: { artist: artist.name, platform: 'apple_music' } })}>Apple Music <ArrowIcon diagonal /></a>}
               {artist.instagramUrl && <a className="text-link" href={artist.instagramUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent({ name: 'artist_link_click', data: { artist: artist.name, platform: 'instagram' } })}>Instagram <ArrowIcon diagonal /></a>}
             </div>
           </div>
