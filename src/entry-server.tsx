@@ -1,5 +1,5 @@
 import { renderToString } from 'react-dom/server'
-import { BASE_CITIES, CONTACT_EMAIL, FOUNDING_YEAR, SITE_DESCRIPTION, SITE_NAME, SITE_URL, artists, releases } from './data'
+import { BASE_CITIES, CONTACT_EMAIL, FOUNDING_YEAR, INSTAGRAM_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL, artists, releases } from './data'
 import type { Artist, Release } from './data'
 import App from './App'
 
@@ -33,7 +33,7 @@ export function buildJsonLd() {
       addressLocality: BASE_CITIES.join(', '),
       addressCountry: 'IT',
     },
-    sameAs: artists.map((artist) => artist.url),
+    sameAs: [INSTAGRAM_URL, ...artists.map((artist) => artist.url)],
   }
 
   const website = {

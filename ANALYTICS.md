@@ -16,7 +16,7 @@ The website ID is public configuration embedded in the built JavaScript, not a s
 ## What is measured
 
 - Automatic page views, referrers, browser/device categories, and campaign parameters.
-- Clicks to artist profiles, streaming platforms, and the contact email (without sending the email address).
+- Clicks to artist profiles, streaming platforms, the Instagram profile, and the contact email (without sending the email address).
 - Visits to the main content sections and scroll milestones at 25%, 50%, 75%, and 100%.
 
 Event properties contain only static content labels such as an artist, release, or destination. The site does not send names, email addresses, account IDs, or custom distinct IDs. URL query strings and hash fragments are excluded.

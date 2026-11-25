@@ -367,3 +367,31 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
   html { scroll-behavior: auto !important; scroll-snap-type: none; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+.contact-instagram { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; }
+.instagram-icon { width: 20px; height: 20px; flex-shrink: 0; }
+/* Testi leggibili su telefono senza zoom */
+@media (max-width: 640px) {
+  .brand-type strong { font-size: 13px; }
+  .brand-type small { font-size: 10px; letter-spacing: .04em; }
+  .eyebrow, .contact-top .eyebrow { font-size: 11px; letter-spacing: .06em; }
+  .hero-copy > p, .about-section p { font-size: 16px; }
+  .button, .text-link { font-size: 12px; }
+  .main-nav a { font-size: 14px; }
+  .hero-bottom-links .hero-policy-link, .hero-bottom-links .scroll-cue { font-size: 10px; letter-spacing: 0; }
+  .release-card { padding-block: 14px; }
+  .release-title > span { font-size: 11px; }
+  .release-title p { font-size: 14px; }
+  .release-links .release-button { min-height: 44px; font-size: 12px; }
+  .music-bottom { font-size: 10px; }
+  .contact-email, .contact-instagram { font-size: 16px; }
+  .contact-bottom > span { font-size: 10px; }
+  .site-footer, .site-footer .footer-links { font-size: 10px; letter-spacing: .04em; }
+}
+/* Lo snap obbligatorio riporta indietro quando una sezione è più alta dello schermo */
+@media (max-width: 900px), (pointer: coarse) {
+  html { scroll-snap-type: none; }
+}
+/* Con lo snap disattivo, il titolo resta staccato dall'header fisso */
+@media (max-width: 640px) {
+  .music-section { padding-top: 100px; }
+}

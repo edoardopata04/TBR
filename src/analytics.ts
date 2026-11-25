@@ -9,6 +9,7 @@ type AnalyticsEvent =
       data: { release: string; artist: string; platform: 'spotify' | 'apple_music' }
     }
   | { name: 'contact_email_click'; data: { method: 'email' } }
+  | { name: 'social_click'; data: { platform: 'instagram' } }
   | { name: 'section_view'; data: { section: SectionName } }
   | { name: 'scroll_depth'; data: { percent: 25 | 50 | 75 | 100 } }
 

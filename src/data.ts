@@ -4,6 +4,7 @@ export const SITE_TAGLINE = 'Il rumore della provincia.'
 export const SITE_DESCRIPTION =
   'The Butchers Records è un’etichetta indipendente di musica fondata nel 2026 tra Milano, Cremona e Lodi. Lucky Voda, Piace, VEETO, LOZA e mantra: voci vere, suoni ruvidi, nessun compromesso.'
 export const CONTACT_EMAIL = 'info@thebutchersrecords.it'
+export const INSTAGRAM_URL = 'https://www.instagram.com/thebutchersrecords/'
 export const FOUNDING_YEAR = '2026'
 export const BASE_CITIES = ['Milano', 'Cremona', 'Lodi']
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import logoImage from '../public/logo.webp'
 import heroVideo from '../WhatsApp Video 2026-10-06 at 15.29.27.mp4'
-import { artists, releases } from './data'
+import { INSTAGRAM_URL, artists, releases } from './data'
 import { initializeAnalytics, trackEvent, trackScrollDepth, trackSectionView } from './analytics'
 
 function BrandMark({ compact = false }: { compact?: boolean }) {
@@ -164,6 +164,9 @@ function App() {
             <div className="contact-top"><span className="eyebrow">DEMO, COLLABORAZIONI, IDEE</span><span className="contact-spark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 1.5 19 11l7-7-4 9.5 9.5 2.5L22 19l4 9.5-7-7-3 9.5-3-9.5-7 7 4-9.5L0.5 16l9.5-2.5L6 4l7 7 3-9.5Z" fill="currentColor" /></svg></span></div>
             <h2>Hai qualcosa<br />da <span>dire?</span></h2>
             <a className="contact-email" href="mailto:info@thebutchersrecords.it" onClick={() => trackEvent({ name: 'contact_email_click', data: { method: 'email' } })}>info@thebutchersrecords.it <ArrowIcon diagonal /></a>
+            <a className="contact-instagram" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram: @thebutchersrecords" onClick={() => trackEvent({ name: 'social_click', data: { platform: 'instagram' } })}>
+              <svg className="instagram-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" /></svg> @thebutchersrecords
+            </a>
             <div className="contact-bottom"><BrandMark compact /><span>NOI NON FACCIAMO RUMORE. LO PUBBLICHIAMO.</span></div>
           </div>
           <footer className="site-footer">
