@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { allowAnalytics, analyticsConfigured } from './analytics'
+import { dict, privacyPath, type Lang } from './i18n'
 import { readConsent, saveConsent, type ConsentChoice } from './consent'
 
-export function ConsentBanner() {
+export function ConsentBanner({ lang }: { lang: Lang }) {
+  const t = dict[lang]
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -21,11 +23,11 @@ export function ConsentBanner() {
   }
 
   return (
-    <section className="consent-banner" aria-label="Preferenze sulle statistiche">
-      <p>Con il tuo consenso usiamo statistiche senza cookie per capire come viene usato il sito. <a href="/privacy/">Privacy</a></p>
+    <section className="consent-banner" aria-label={t.consentLabel}>
+      <p>{t.consentText} <a href={privacyPath(lang)}>Privacy</a></p>
       <div>
-        <button type="button" onClick={() => choose('denied')}>Rifiuta</button>
-        <button type="button" onClick={() => choose('granted')}>Accetta</button>
+        <button type="button" onClick={() => choose('denied')}>{t.decline}</button>
+        <button type="button" onClick={() => choose('granted')}>{t.accept}</button>
       </div>
     </section>
   )

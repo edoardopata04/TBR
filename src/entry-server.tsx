@@ -1,5 +1,6 @@
 import { renderToString } from 'react-dom/server'
-import { BASE_CITIES, CONTACT_EMAIL, FOUNDING_YEAR, INSTAGRAM_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL, artistPath, artists, featuredReleases, releasesByArtist } from './data'
+import { BASE_CITIES, CONTACT_EMAIL, FOUNDING_YEAR, INSTAGRAM_URL, SITE_NAME, SITE_URL, artistPath, artists, featuredReleases, releasesByArtist } from './data'
+import { LANGS, homePath, seo, type Lang } from './i18n'
 import type { Artist, Release } from './data'
 import App from './App'
 
@@ -14,13 +15,13 @@ export function toAbsolute(url: string) {
 
 const labelId = `${SITE_URL}/#organization`
 
-function artistNode(artist: Artist) {
+function artistNode(artist: Artist, lang: Lang = 'it') {
   return {
     '@context': 'https://schema.org',
     '@type': 'MusicGroup',
     name: artist.name,
     image: toAbsolute(artist.image),
-    url: `${SITE_URL}${artistPath(artist)}`,
+    url: `${SITE_URL}${artistPath(artist, lang)}`,
     sameAs: [artist.url, artist.appleMusicUrl, artist.instagramUrl].filter(Boolean),
     recordLabel: { '@id': labelId },
   }
@@ -41,7 +42,7 @@ function releaseNode(release: Release) {
   }
 }
 
-export function buildJsonLd() {
+function buildJsonLd(lang: Lang) {
   const organization = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -53,7 +54,7 @@ export function buildJsonLd() {
     logo: `${SITE_URL}/apple-touch-icon.png`,
     email: CONTACT_EMAIL,
     foundingDate: FOUNDING_YEAR,
-    description: SITE_DESCRIPTION,
+    description: seo[lang].homeDescription,
     areaServed: { '@type': 'City', name: BASE_CITIES.join(', ') },
     address: {
       '@type': 'PostalAddress',
@@ -66,33 +67,71 @@ export function buildJsonLd() {
   const website = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': `${SITE_URL}/#website`,
-    url: `${SITE_URL}/`,
+    '@id': `${SITE_URL}${homePath(lang)}#website`,
+    url: `${SITE_URL}${homePath(lang)}`,
     name: SITE_NAME,
-    inLanguage: 'it',
+    inLanguage: lang,
     publisher: { '@id': labelId },
   }
 
-  const artistNodes = artists.map(artistNode)
+  const artistNodes = artists.map((artist) => artistNode(artist, lang))
 
   const releaseNodes = featuredReleases.map(releaseNode)
 
-  return [organization, website, ...artistNodes, ...releaseNodes]
-    .map((node) => JSON.stringify(node).replace(/</g, '\\u003c'))
-    .join('\n')
+  return [organization, website, ...artistNodes, ...releaseNodes].map(serialize)
 }
 
-export function artistPages() {
-  return artists.map((artist) => {
+const serialize = (node: object) => JSON.stringify(node).replace(/</g, '\\u003c')
+
+const other = (lang: Lang): Lang => (lang === 'it' ? 'en' : 'it')
+
+export type Page = {
+  path: string
+  lang: Lang
+  alternates: Record<Lang, string>
+  home: boolean
+  title: string
+  description: string
+  locale: string
+  altLocale: string
+  ogType: 'website' | 'profile'
+  image: string
+  imageAlt: string
+  jsonLd: string[]
+}
+
+// Every prerendered page, in both languages.
+export function pages(): Page[] {
+  const homes = LANGS.map((lang): Page => ({
+    path: homePath(lang),
+    lang,
+    alternates: { it: homePath('it'), en: homePath('en') },
+    home: true,
+    title: seo[lang].homeTitle,
+    description: seo[lang].homeDescription,
+    locale: seo[lang].locale,
+    altLocale: seo[other(lang)].locale,
+    ogType: 'website',
+    image: `${SITE_URL}/og-image.jpg`,
+    imageAlt: SITE_NAME,
+    jsonLd: buildJsonLd(lang),
+  }))
+  const artistPages = LANGS.flatMap((lang) => artists.map((artist): Page => {
     const releaseTitles = releasesByArtist(artist).slice(0, 3).map((release) => release.title)
     return {
-      path: artistPath(artist),
+      path: artistPath(artist, lang),
+      lang,
+      alternates: { it: artistPath(artist, 'it'), en: artistPath(artist, 'en') },
+      home: false,
       title: `${artist.name} — The Butchers Records`,
-      description: `${artist.name} su The Butchers Records, etichetta indipendente tra Milano, Cremona e Lodi.${releaseTitles.length ? ` Ascolta ${releaseTitles.join(', ')}.` : ''}`,
+      description: seo[lang].artistDescription(artist.name, releaseTitles),
+      locale: seo[lang].locale,
+      altLocale: seo[other(lang)].locale,
+      ogType: 'profile',
       image: `${SITE_URL}/og/${artist.slug}.jpg`,
       imageAlt: `${artist.name} — The Butchers Records`,
-      jsonLd: [artistNode(artist), ...releasesByArtist(artist).map(releaseNode)]
-        .map((node) => JSON.stringify(node).replace(/</g, '\\u003c')),
+      jsonLd: [artistNode(artist, lang), ...releasesByArtist(artist).map(releaseNode)].map(serialize),
     }
-  })
+  }))
+  return [...homes, ...artistPages]
 }

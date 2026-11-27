@@ -11,6 +11,7 @@ type AnalyticsEvent =
     }
   | { name: 'contact_email_click'; data: { method: 'email' } }
   | { name: 'social_click'; data: { platform: 'instagram' } }
+  | { name: 'language_switch'; data: { to: 'it' | 'en' } }
   | { name: 'section_view'; data: { section: SectionName } }
   | { name: 'scroll_depth'; data: { percent: 25 | 50 | 75 | 100 } }
 

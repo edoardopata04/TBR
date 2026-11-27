@@ -1,3 +1,5 @@
+import type { Lang } from './i18n'
+
 export const SITE_URL = 'https://thebutchersrecords.it'
 export const SITE_NAME = 'The Butchers Records'
 export const SITE_TAGLINE = 'Il rumore della provincia.'
@@ -268,8 +270,8 @@ export const releases: Release[] = [
   },
 ]
 
-export function artistPath(artist: Artist) {
-  return `/artisti/${artist.slug}/`
+export function artistPath(artist: Artist, lang: Lang = 'it') {
+  return lang === 'en' ? `/en/artists/${artist.slug}/` : `/artisti/${artist.slug}/`
 }
 
 export const featuredReleases = releases
@@ -282,5 +284,6 @@ export function releasesByArtist(artist: Artist) {
 }
 
 export function findArtistByPath(path: string) {
-  return artists.find((artist) => artistPath(artist) === `${path.replace(/\/+$/, '')}/`)
+  const normalized = `${path.replace(/\/+$/, '')}/`
+  return artists.find((artist) => artistPath(artist, 'it') === normalized || artistPath(artist, 'en') === normalized)
 }
