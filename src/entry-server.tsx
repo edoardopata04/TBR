@@ -89,7 +89,8 @@ export function artistPages() {
       path: artistPath(artist),
       title: `${artist.name} — The Butchers Records`,
       description: `${artist.name} su The Butchers Records, etichetta indipendente tra Milano, Cremona e Lodi.${releaseTitles.length ? ` Ascolta ${releaseTitles.join(', ')}.` : ''}`,
-      image: toAbsolute(artist.image),
+      image: `${SITE_URL}/og/${artist.slug}.jpg`,
+      imageAlt: `${artist.name} — The Butchers Records`,
       jsonLd: [artistNode(artist), ...releasesByArtist(artist).map(releaseNode)]
         .map((node) => JSON.stringify(node).replace(/</g, '\\u003c')),
     }

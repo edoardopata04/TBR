@@ -49,7 +49,7 @@ function HomePage() {
       <main id="top">
         <section className="hero" id="home" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <div className="eyebrow"><span className="live-dot" /> ETICHETTA INDIPENDENTE · ITALIA</div>
+            <div className="eyebrow"><span className="live-dot" /> RECORD LABEL INDIPENDENTE · ITALIA</div>
             <h1 id="hero-title">Il rumore<br />della <span>provincia.</span></h1>
             <p>Voci vere da dove la scena non guarda.</p>
             <div className="hero-actions">
@@ -106,12 +106,15 @@ function HomePage() {
         </section>
 
         <section className="about-section" id="chi-siamo" data-analytics-section="chi-siamo">
-          <span className="eyebrow">LA LABEL</span>
+          <span className="eyebrow">LA LABEL · RECORD LABEL</span>
           <h2>Chi <span>siamo.</span></h2>
           <p>
-            The Butchers Records è un’etichetta indipendente fondata nel 2026 tra Milano, Cremona e Lodi.
+            The Butchers Records è un’etichetta discografica indipendente (independent record label) fondata nel 2026 tra Milano, Cremona e Lodi.
             Pubblica rap e musica alternativa della provincia lombarda: artisti che suonano dove la scena non guarda e dicono quello che pensano.
             Non facciamo filtri né passaggi editoriali. Portiamo fuori i tagli più freschi.
+          </p>
+          <p lang="en">
+            The Butchers Records is an independent record label based in Lombardy, Italy. We release music by Lucky Voda, Piace, VEETO, LOZA and mantra.
           </p>
         </section>
 

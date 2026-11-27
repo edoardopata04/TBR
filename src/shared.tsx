@@ -44,7 +44,7 @@ export function SiteHeader({ base = '' }: { base?: string }) {
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <span className="footer-copyright">© {new Date().getFullYear()} THE BUTCHERS RECORDS</span>
+      <span className="footer-copyright">© {new Date().getFullYear()} THE BUTCHERS RECORDS · INDEPENDENT RECORD LABEL</span>
       <div className="footer-links">
         <a href="/privacy/" className="footer-policy-link">PRIVACY</a>
         <a href="/privacy/#cookie" className="footer-policy-link">COOKIE POLICY</a>

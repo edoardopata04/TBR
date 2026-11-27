@@ -316,6 +316,7 @@ main > section.hero, main > section.manifesto, main > section.artists-section, m
 .about-section h2 { margin: 19px 0 24px; font: 700 clamp(44px,6vw,84px)/1.05 var(--display); letter-spacing: -.025em; }
 .about-section h2 span { color: #b23b36; }
 .about-section p { margin: 0; max-width: 640px; color: #a59d93; font-size: 15px; line-height: 1.8; }
+.about-section p + p { margin-top: 16px; }
 @media (max-width: 640px) {
   .about-section { padding: 40px 8%; }
   .about-section p { font-size: 13px; }
