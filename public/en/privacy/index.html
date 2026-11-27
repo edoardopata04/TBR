@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy and cookies — The Butchers Records</title>
+    <meta name="description" content="Privacy and cookie policy of The Butchers Records." />
+    <link rel="canonical" href="https://thebutchersrecords.it/en/privacy/" />
+    <link rel="alternate" hreflang="it" href="https://thebutchersrecords.it/privacy/" />
+    <link rel="alternate" hreflang="en" href="https://thebutchersrecords.it/en/privacy/" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32.png" />
+    <style>
+      @font-face { font-family: 'DM Sans'; font-weight: 400 700; font-display: swap; src: url('/fonts/dm-sans-variable.woff2') format('woff2'); }
+      @font-face { font-family: 'Playfair Display'; font-weight: 700 900; font-display: swap; src: url('/fonts/playfair-variable.woff2') format('woff2'); }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #000; color: #d6cec1; font: 16px/1.65 'DM Sans', sans-serif; }
+      main { max-width: 720px; margin: 0 auto; padding: 32px 20px 80px; overflow-wrap: break-word; }
+      h1, h2 { color: #f0e9dc; font-family: 'Playfair Display', Georgia, serif; line-height: 1.15; }
+      h1 { font-size: clamp(36px, 9vw, 56px); margin: 32px 0 8px; }
+      h2 { font-size: 24px; margin: 40px 0 8px; }
+      a { color: #db7770; }
+      .box { margin-top: 16px; padding: 16px; border: 1px solid rgba(240,233,220,.25); }
+      button { min-height: 44px; padding: 0 18px; border: 1px solid #f0e9dc; background: transparent; color: #f0e9dc; font: inherit; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="/en/">← The Butchers Records</a> · <a href="/privacy/" hreflang="it" lang="it">Italiano</a>
+      <h1>Privacy and cookies</h1>
+      <p>Last updated: 25 November 2026</p>
+      <p>This is a translation of the <a href="/privacy/" hreflang="it">Italian policy</a>. If the two differ, the Italian version prevails.</p>
+
+      <h2>Data controller</h2>
+      <p>Edoardo Michele Pata, Via Ungaretti 21, 26016 Spino d’Adda (CR), Italy.<br />Email: <a href="mailto:info@thebutchersrecords.it">info@thebutchersrecords.it</a></p>
+
+      <h2>What data we process and why</h2>
+      <p><strong>Running the website.</strong> To show you the pages, our hosting and delivery providers receive technical data such as your IP address, browser and the time of the request. Legal basis: our legitimate interest in providing a working and secure website (Art. 6(1)(f) GDPR). Providers: <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub Pages</a> (GitHub Inc., United States), <a href="https://www.fastly.com/privacy">Fastly</a> (Fastly, Inc., United States). Register S.p.A. (Italy) provides the domain and email services. Technical logs are kept for the periods set by each provider.</p>
+      <p><strong>Email.</strong> If you write to us, we use your address and the content of your message to reply. Legal basis: steps you ask us to take before a contract, or our legitimate interest in replying (Art. 6(1)(b) and 6(1)(f)). We keep messages for as long as needed to handle your request, unless the law requires otherwise. Providing them is optional, but without them we cannot reply.</p>
+      <p><strong>Analytics, only with your consent.</strong> We use Umami Cloud, by Umami Software, Inc. (United States), which acts as our data processor. It collects the pages and sections viewed, scroll depth, link clicks, referring website, campaign parameters (utm), language, screen size, browser, device and approximate location. The IP address is processed to compute a visit identifier and the location and, according to Umami, is not stored in the analytics data; it may appear in the technical logs of Umami and its providers. Legal basis: consent (Art. 6(1)(a)). Analytics data is kept for 6 months. If you decline, the website works the same way. Details: Umami’s <a href="https://umami.is/privacy">privacy policy</a> and <a href="https://umami.is/dpa">data processing agreement</a>.</p>
+
+      <h2 id="cookie">Cookies and similar technologies</h2>
+      <p>The website sets no cookies of its own and uses no profiling or advertising. In your browser’s storage (<em>localStorage</em>) we only save your analytics choice (<code>tbr-analytics-consent</code>), with the date and the policy version. It lasts 180 days: after that, or if the policy changes significantly, we ask you again. It is a technical tool needed to remember your choice. If you accept, the Umami script reads information from your device, such as language and screen, and the <code>umami.disabled</code> entry.</p>
+      <div class="box" id="preferences">
+        <p><strong>Your preferences.</strong> <span id="status" aria-live="polite">Enable JavaScript to change your choice.</span></p>
+        <button type="button" data-choice="denied">Decline</button>
+        <button type="button" data-choice="granted">Accept</button>
+      </div>
+
+      <h2>Transfers outside the EU</h2>
+      <p>Some providers are based in the United States, where data may be processed. Transfers rely on the safeguards provided by the GDPR, such as adequacy decisions or standard contractual clauses, under each provider’s agreements. You can ask us for more information.</p>
+
+      <h2>External links</h2>
+      <p>Links to Spotify, Apple Music and Instagram lead to websites with their own policies. None of their content is loaded by this website before you click.</p>
+
+      <h2>Your rights</h2>
+      <p>You can ask for access to, rectification, erasure, restriction and portability of your data, object to processing based on legitimate interest, and withdraw your consent at any time, without affecting earlier processing. Write to <a href="mailto:info@thebutchersrecords.it">info@thebutchersrecords.it</a>: we reply within one month, except for the extensions allowed by law. You can also lodge a complaint with the Italian data protection authority, the <a href="https://www.garanteprivacy.it/">Garante per la protezione dei dati personali</a>. We make no automated decisions that affect you.</p>
+    </main>
+    <script>
+      (function () {
+        var key = 'tbr-analytics-consent', version = '2026-11-25', status = document.getElementById('status')
+        function show() {
+          var choice = null
+          try { var s = JSON.parse(localStorage.getItem(key)); if (s && s.version === version && Date.now() - s.at <= 180 * 864e5) choice = s.choice } catch (e) {}
+          status.textContent = choice === 'granted' ? 'Analytics accepted.' : choice === 'denied' ? 'Analytics declined.' : 'No choice saved: analytics are off.'
+        }
+        document.querySelectorAll('[data-choice]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            try { localStorage.setItem(key, JSON.stringify({ choice: b.dataset.choice, at: Date.now(), version: version })) } catch (e) {}
+            show()
+          })
+        })
+        show()
+      })()
+    </script>
+  </body>
+</html>

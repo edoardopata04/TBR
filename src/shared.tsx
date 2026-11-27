@@ -29,7 +29,7 @@ export function SiteHeader({ lang, base = '', alternate }: { lang: Lang; base?: 
   const t = dict[lang]
   const ids = sectionIds[lang]
   const other: Lang = lang === 'it' ? 'en' : 'it'
-  const link = (key: 'home' | keyof typeof ids) => (
+  const link = (key: keyof typeof t.nav) => (
     <a href={`${base}#${key === 'home' ? 'home' : ids[key]}`} onClick={() => { trackEvent({ name: 'navigation_click', data: { destination: key } }); closeMenu() }}>{t.nav[key]}</a>
   )
 

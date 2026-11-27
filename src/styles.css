@@ -437,3 +437,12 @@ html.no-snap { scroll-snap-type: none; }
 @media (min-width: 641px) {
   .artists-section { padding-top: 120px; }
 }
+
+/* Language switch */
+.main-nav .lang-switch { color: #8e867c; font: 11px var(--mono); letter-spacing: .08em; }
+.main-nav .lang-switch .lang-current { color: var(--paper); }
+.main-nav .lang-switch:hover .lang-current { color: inherit; }
+
+/* Hero record-label badge: the first thing a visitor reads. */
+.hero .hero-label { display: inline-flex; width: fit-content; padding: 10px 16px; border: 1px solid #ad3430; color: var(--paper); font-size: 13px; letter-spacing: .14em; }
+@media (max-width: 640px) { .hero .hero-label { padding: 8px 12px; font-size: 11px; letter-spacing: .1em; } }

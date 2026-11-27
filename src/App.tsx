@@ -54,7 +54,7 @@ function HomePage({ lang }: { lang: Lang }) {
       <main id="top">
         <section className="hero" id="home" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <div className="eyebrow"><span className="live-dot" /> {t.heroEyebrow}</div>
+            <div className="eyebrow hero-label"><span className="live-dot" /> {t.heroEyebrow}</div>
             <h1 id="hero-title">{t.heroTitle[0]}<br />{t.heroTitle[1]}<span>{t.heroTitle[2]}</span></h1>
             <p>{t.heroText}</p>
             <div className="hero-actions">
